@@ -1,12 +1,23 @@
-﻿<Window x:Class="Grasssummoner.MainWindow"
+﻿<pu:WindowX x:Class="Grasssummoner.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Grasssummoner"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Grasssummoner v1.0.4" Height="510" Width="830" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" FontWeight="Normal">
+    <Grid Cursor="Hand">
+        <TextBox Height="30" Width="200" HorizontalAlignment="Left" x:Name="GameDir" VerticalAlignment="Top" Margin="30,30,0,0" />
+        <TextBox Height="30" Width="200" HorizontalAlignment="Left" x:Name="ProxyDir" VerticalAlignment="Top" Margin="30,70,0,0" />
+        <TextBox Height="30" Width="200" HorizontalAlignment="Left" x:Name="ServerDir" VerticalAlignment="Top" Margin="30,110,0,0"/>
+        <Button Height="60" Width="180" Content="一键启动" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,30,30" FontSize="24" Click="StartAll_Click" Background="#EEE8AA" x:Name="StartAll" Foreground="White" BorderBrush="White"/>
+        <Button x:Name="loadconfig" Content="加载配置文件" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="120" Height="30" Margin="20,0,0,20" Click="loadconfig_Click"></Button>
+        <Button x:Name="saveconfig" Content="保存配置文件" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="120" Height="30" Margin="20,0,0,60" Click="saveconfig_Click"></Button>
+        <Button Content="仅抓取数据" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Height="30" Margin="0,0,30,200" Click="OnlyStartMitmproxy_Click" Background="#FF7DCDFF" Foreground="White"></Button>
+        <Button Content="仅开启服务器" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Height="30" Margin="0,0,30,150" Click="OnlyStartServer_Click" Background="#FF7DFFCD" Foreground="White" RenderTransformOrigin="0.464,0.505"></Button>
+        <Button Content="仅启动客户端" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Height="30" Margin="0,0,30,100" Click="OnlyStartGame_Click" Background="#FFFF7D7D" Foreground="White"></Button>
+        <Button x:Name="SelectGame" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Margin="240,30,0,0" Content="选择游戏文件" Background="#FFDFDFDF" Foreground="Black" Click="SelectGame_Click"></Button>
+        <Button x:Name="SelectProxy" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Margin="240,70,0,0" Content="选择proxy.py" Background="#FFDFDFDF" Foreground="Black" Click="SelectProxy_Click"></Button>
+        <Button x:Name="SelectGrasscutter" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Margin="240,110,0,0" Content="选择grasscutter.jar" Background="#FFDFDFDF" Foreground="Black" Click="SelectGrasscutter_Click"></Button>
     </Grid>
-</Window>
+</pu:WindowX>
