@@ -124,9 +124,16 @@ namespace Grasssummoner
 
         private void OnlyStartMitmproxy_Click(object sender, RoutedEventArgs e)
         {
-            if(ProxyDir.Text != "")
+            if(!string.IsNullOrEmpty(ProxyDir.Text))
             {
-                string iProxyDir = ProxyDir.Text;
+                try
+                {
+                    System.Diagnostics.Process.Start("python " + ProxyDir.Text);
+                }
+                catch (Exception wcnmsl)
+                {
+                    MessageBoxX.Show("启动失败，错误日志:\n" + wcnmsl);
+                }
             }
             else
             {
@@ -137,9 +144,16 @@ namespace Grasssummoner
 
         private void OnlyStartServer_Click(object sender, RoutedEventArgs e)
         {
-            if(ServerDir.Text != "")
+            if(!string.IsNullOrEmpty(ServerDir.Text))
             {
-                string iServerDir = ServerDir.Text;
+                try
+                {
+                    System.Diagnostics.Process.Start("java -jar " + ServerDir.Text);
+                }
+                catch (Exception wcnmsl)
+                {
+                    MessageBoxX.Show("启动失败，错误日志:\n" + wcnmsl);
+                }
             }
             else
             {
@@ -150,9 +164,16 @@ namespace Grasssummoner
 
         private void OnlyStartGame_Click(object sender, RoutedEventArgs e)
         {
-            if (GameDir.Text != "")
+            if (!string.IsNullOrEmpty(GameDir.Text))
             {
-                string iGameDir = GameDir.Text;
+                try
+                {
+                    System.Diagnostics.Process.Start(GameDir.Text);
+                }
+                catch (Exception wcnmsl)
+                {
+                    MessageBoxX.Show("启动失败，错误日志:\n" + wcnmsl);
+                }
             }
             else
             {
@@ -162,7 +183,23 @@ namespace Grasssummoner
         }
         private void StartAll_Click(object sender, RoutedEventArgs e)
         {
-            return;
+            if (!string.IsNullOrEmpty(ServerDir.Text) && !string.IsNullOrEmpty(GameDir.Text) && !string.IsNullOrEmpty(ProxyDir.Text))
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(GameDir.Text);
+                    System.Diagnostics.Process.Start("python " + ProxyDir.Text);
+                    System.Diagnostics.Process.Start("java -jar " + ServerDir.Text);
+                }
+                catch (Exception wcnmsl)
+                {
+                    MessageBoxX.Show("启动失败，错误日志:\n"+wcnmsl);
+                }
+            }
+            else
+            {
+                MessageBoxX.Show("文件路径填写错误或未填写");
+            }
         }
     }
 }

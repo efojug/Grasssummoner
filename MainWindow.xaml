@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver"
         mc:Ignorable="d"
-        Title="Grasssummoner v1.2.8" Height="510" Width="830" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" FontWeight="Normal">
+        Title="Grasssummoner v1.3.2" Height="510" Width="830" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" FontWeight="Normal">
     <Grid Cursor="Hand">
         <TextBox Height="30" Width="200" FontSize="20px" HorizontalAlignment="Left" x:Name="GameDir" VerticalAlignment="Top" Margin="30,30,0,0" />
         <TextBox Height="30" Width="200" FontSize="20px" HorizontalAlignment="Left" x:Name="ProxyDir" VerticalAlignment="Top" Margin="30,70,0,0" />
