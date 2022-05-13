@@ -5,11 +5,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver"
         mc:Ignorable="d"
-        Title="Grasssummoner v1.0.4" Height="510" Width="830" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" FontWeight="Normal">
+        Title="Grasssummoner v1.2.8" Height="510" Width="830" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" FontWeight="Normal">
     <Grid Cursor="Hand">
-        <TextBox Height="30" Width="200" HorizontalAlignment="Left" x:Name="GameDir" VerticalAlignment="Top" Margin="30,30,0,0" />
-        <TextBox Height="30" Width="200" HorizontalAlignment="Left" x:Name="ProxyDir" VerticalAlignment="Top" Margin="30,70,0,0" />
-        <TextBox Height="30" Width="200" HorizontalAlignment="Left" x:Name="ServerDir" VerticalAlignment="Top" Margin="30,110,0,0"/>
+        <TextBox Height="30" Width="200" FontSize="20px" HorizontalAlignment="Left" x:Name="GameDir" VerticalAlignment="Top" Margin="30,30,0,0" />
+        <TextBox Height="30" Width="200" FontSize="20px" HorizontalAlignment="Left" x:Name="ProxyDir" VerticalAlignment="Top" Margin="30,70,0,0" />
+        <TextBox Height="30" Width="200" FontSize="20px" HorizontalAlignment="Left" x:Name="ServerDir" VerticalAlignment="Top" Margin="30,110,0,0"/>
         <Button Height="60" Width="180" Content="一键启动" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,30,30" FontSize="24" Click="StartAll_Click" Background="#EEE8AA" x:Name="StartAll" Foreground="White" BorderBrush="White"/>
         <Button x:Name="loadconfig" Content="加载配置文件" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="120" Height="30" Margin="20,0,0,20" Click="loadconfig_Click"></Button>
         <Button x:Name="saveconfig" Content="保存配置文件" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="120" Height="30" Margin="20,0,0,60" Click="saveconfig_Click"></Button>
