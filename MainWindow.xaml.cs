@@ -3,6 +3,7 @@ using Panuon.UI.Silver;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using System.Windows;
 
 namespace Grasssummoner
@@ -212,6 +213,7 @@ namespace Grasssummoner
             {
                 try
                 {
+                    MessageBoxX.Show("请确认已开启系统代理", "注意");
                     ProcessStartInfo StartMitmProxy = new ProcessStartInfo
                     {
                         FileName = @"mitmdump",
@@ -227,7 +229,9 @@ namespace Grasssummoner
                         CreateNoWindow = true
                     };
                     Process.Start(StartMitmProxy);
+                    Thread.Sleep(500);
                     Process.Start(OnlyStartServer);
+                    Thread.Sleep(3500);
                     Process.Start(GameDir.Text.ToString());
                 }
                 catch (Exception wcnmsl)
