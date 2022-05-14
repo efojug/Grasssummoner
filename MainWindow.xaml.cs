@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using Panuon.UI.Silver;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 
@@ -39,12 +40,14 @@ namespace Grasssummoner
 
         private void SelectGame_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog SelectGameDialog = new OpenFileDialog();
-            SelectGameDialog.Multiselect = false;
-            SelectGameDialog.Title = "请选择游戏本体文件";
-            SelectGameDialog.InitialDirectory = "C:\\";
-            SelectGameDialog.Filter = "应用程序|*.exe";
-            SelectGameDialog.DereferenceLinks = true;
+            OpenFileDialog SelectGameDialog = new OpenFileDialog
+            {
+                Multiselect = false,
+                Title = "请选择游戏本体文件",
+                InitialDirectory = "C:\\",
+                Filter = "应用程序|*.exe",
+                DereferenceLinks = true
+            };
             if ((bool)SelectGameDialog.ShowDialog())
             {
                 GameDir.Text = SelectGameDialog.FileName;
@@ -52,14 +55,18 @@ namespace Grasssummoner
             }
         }
 
+
+
         private void SelectProxy_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog SelectProxyDialog = new OpenFileDialog();
-            SelectProxyDialog.Multiselect = false;
-            SelectProxyDialog.Title = "请选择数据抓取脚本";
-            SelectProxyDialog.InitialDirectory = "C:\\";
-            SelectProxyDialog.Filter = "Python文件|*.py";
-            SelectProxyDialog.DereferenceLinks = true;
+            OpenFileDialog SelectProxyDialog = new OpenFileDialog
+            {
+                Multiselect = false,
+                Title = "请选择数据抓取脚本",
+                InitialDirectory = "C:\\",
+                Filter = "Python文件|*.py",
+                DereferenceLinks = true
+            };
             if ((bool)SelectProxyDialog.ShowDialog())
             {
                 ProxyDir.Text = SelectProxyDialog.FileName;
@@ -69,12 +76,14 @@ namespace Grasssummoner
 
         private void SelectGrasscutter_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog SelectServerDialog = new OpenFileDialog();
-            SelectServerDialog.Multiselect = false;
-            SelectServerDialog.Title = "请选择服务器主体文件";
-            SelectServerDialog.InitialDirectory = "C:\\";
-            SelectServerDialog.Filter = "Jar文件|*.jar";
-            SelectServerDialog.DereferenceLinks = true;
+            OpenFileDialog SelectServerDialog = new OpenFileDialog
+            {
+                Multiselect = false,
+                Title = "请选择服务器主体文件",
+                InitialDirectory = "C:\\",
+                Filter = "Jar文件|*.jar",
+                DereferenceLinks = true
+            };
             if ((bool)SelectServerDialog.ShowDialog())
             {
                 ServerDir.Text = SelectServerDialog.FileName;
@@ -82,17 +91,18 @@ namespace Grasssummoner
             }
         }
 
-        private void saveconfig_Click(object sender, RoutedEventArgs e)
+        private void SaveConfig_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 using (StreamWriter config = new StreamWriter("grasssummoner.config"))
                 {
-                    config.WriteLine(GameDir.Text);
-                    config.WriteLine(ProxyDir.Text);
-                    config.WriteLine(ServerDir.Text);
+                    config.WriteLine(GameDir.Text.ToString());
+                    config.WriteLine(ProxyDir.Text.ToString());
+                    config.WriteLine(ServerDir.Text.ToString());
                     config.Close();
-                    MessageBoxX.Show("保存成功", "提示");
+
+                    MessageBoxX.Show("保存完成", "提示");
                 }
             }
             catch (Exception ex)
@@ -101,7 +111,7 @@ namespace Grasssummoner
             }
         }
 
-        private void loadconfig_Click(object sender, RoutedEventArgs e)
+        private void LoadConfig_Click(object sender, RoutedEventArgs e)
         {
             string path = @"grasssummoner.config";
             if (File.Exists(path))
@@ -124,15 +134,22 @@ namespace Grasssummoner
 
         private void OnlyStartMitmproxy_Click(object sender, RoutedEventArgs e)
         {
-            if(!string.IsNullOrEmpty(ProxyDir.Text))
+            if(!string.IsNullOrEmpty(ProxyDir.Text.ToString()))
             {
                 try
                 {
-                    System.Diagnostics.Process.Start("python " + ProxyDir.Text);
+                    ProcessStartInfo StartMitmProxy = new ProcessStartInfo
+                    {
+                        FileName = @"mitmdump",
+                        Arguments = @" -s " + ProxyDir.Text.ToString() + " --ssl-insecure --set block_global=false --listen-port 8080",
+                        UseShellExecute = true,
+                        CreateNoWindow = true
+                    };
+                    Process.Start(StartMitmProxy);
                 }
                 catch (Exception wcnmsl)
                 {
-                    MessageBoxX.Show("启动失败，错误日志:\n" + wcnmsl);
+                    MessageBoxX.Show("启动失败，错误信息:\n" + wcnmsl.ToString());
                 }
             }
             else
@@ -148,11 +165,19 @@ namespace Grasssummoner
             {
                 try
                 {
-                    System.Diagnostics.Process.Start("java -jar " + ServerDir.Text);
+                    ProcessStartInfo StartServer = new ProcessStartInfo
+                    {
+                        FileName = @"java",
+                        Arguments = @" -jar " + ServerDir.Text.ToString(),
+                        //FileName = ServerDir.Text,
+                        UseShellExecute = true,
+                        CreateNoWindow = true
+                    };
+                    Process.Start(StartServer);
                 }
                 catch (Exception wcnmsl)
                 {
-                    MessageBoxX.Show("启动失败，错误日志:\n" + wcnmsl);
+                    MessageBoxX.Show("启动失败，错误信息:\n" + wcnmsl.ToString());
                 }
             }
             else
@@ -164,15 +189,15 @@ namespace Grasssummoner
 
         private void OnlyStartGame_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(GameDir.Text))
+            if (!string.IsNullOrEmpty(GameDir.Text.ToString()))
             {
                 try
                 {
-                    System.Diagnostics.Process.Start(GameDir.Text);
+                    Process.Start(GameDir.Text.ToString());
                 }
                 catch (Exception wcnmsl)
                 {
-                    MessageBoxX.Show("启动失败，错误日志:\n" + wcnmsl);
+                    MessageBoxX.Show("启动失败，错误信息:\n" + wcnmsl.ToString());
                 }
             }
             else
@@ -183,17 +208,31 @@ namespace Grasssummoner
         }
         private void StartAll_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(ServerDir.Text) && !string.IsNullOrEmpty(GameDir.Text) && !string.IsNullOrEmpty(ProxyDir.Text))
+            if (!string.IsNullOrEmpty(ServerDir.Text.ToString()) && !string.IsNullOrEmpty(GameDir.Text) && !string.IsNullOrEmpty(ProxyDir.Text.ToString()))
             {
                 try
                 {
-                    System.Diagnostics.Process.Start(GameDir.Text);
-                    System.Diagnostics.Process.Start("python " + ProxyDir.Text);
-                    System.Diagnostics.Process.Start("java -jar " + ServerDir.Text);
+                    ProcessStartInfo StartMitmProxy = new ProcessStartInfo
+                    {
+                        FileName = @"mitmdump",
+                        Arguments = @" -s " + ProxyDir.Text.ToString() + " --ssl-insecure --set block_global=false --listen-port 8080",
+                        UseShellExecute = true,
+                        CreateNoWindow = true
+                    };
+                    ProcessStartInfo OnlyStartServer = new ProcessStartInfo
+                    {
+                        FileName = @"java",
+                        Arguments = @" -jar " + ServerDir.Text.ToString(),
+                        UseShellExecute = true,
+                        CreateNoWindow = true
+                    };
+                    Process.Start(StartMitmProxy);
+                    Process.Start(OnlyStartServer);
+                    Process.Start(GameDir.Text.ToString());
                 }
                 catch (Exception wcnmsl)
                 {
-                    MessageBoxX.Show("启动失败，错误日志:\n"+wcnmsl);
+                    MessageBoxX.Show("启动失败，错误信息:\n"+wcnmsl.ToString());
                 }
             }
             else
