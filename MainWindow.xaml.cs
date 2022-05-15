@@ -244,5 +244,41 @@ namespace Grasssummoner
                 MessageBoxX.Show("文件路径填写错误或未填写");
             }
         }
+
+        private void ServerMode_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(ServerDir.Text.ToString()) && !string.IsNullOrEmpty(ProxyDir.Text.ToString()))
+            {
+                try
+                {
+                    MessageBoxX.Show("请确认已开启系统代理", "注意");
+                    ProcessStartInfo StartMitmProxy = new ProcessStartInfo
+                    {
+                        FileName = @"mitmdump",
+                        Arguments = @" -s " + ProxyDir.Text.ToString() + " --ssl-insecure --set block_global=false --listen-port 8080",
+                        UseShellExecute = true,
+                        CreateNoWindow = true
+                    };
+                    ProcessStartInfo OnlyStartServer = new ProcessStartInfo
+                    {
+                        FileName = @"java",
+                        Arguments = @" -jar " + ServerDir.Text.ToString(),
+                        UseShellExecute = true,
+                        CreateNoWindow = true
+                    };
+                    Process.Start(StartMitmProxy);
+                    Thread.Sleep(500);
+                    Process.Start(OnlyStartServer);
+                }
+                catch (Exception wcnmsl)
+                {
+                    MessageBoxX.Show("启动失败，错误信息:\n" + wcnmsl.ToString());
+                }
+            }
+            else
+            {
+                MessageBoxX.Show("文件路径填写错误或未填写");
+            }
+        }
     }
 }
