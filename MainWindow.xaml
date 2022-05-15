@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver"
         mc:Ignorable="d"
-        Title="Grasssummoner v1.6.2" Height="510" Width="830" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" FontWeight="Normal">
+        Title="Grasssummoner v1.7.0" Height="510" Width="830" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" FontWeight="Normal">
     <Grid Cursor="Hand">
         <TextBox Height="30" Width="200" FontSize="20px" HorizontalAlignment="Left" x:Name="GameDir" VerticalAlignment="Top" Margin="30,30,0,0" />
         <TextBox Height="30" Width="200" FontSize="20px" HorizontalAlignment="Left" x:Name="ProxyDir" VerticalAlignment="Top" Margin="30,70,0,0" />
@@ -20,8 +20,6 @@
         <Button x:Name="SelectProxy" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Margin="240,70,0,0" Content="选择proxy.py" Background="#FFDFDFDF" Foreground="Black" Click="SelectProxy_Click"></Button>
         <Button x:Name="SelectGrasscutter" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Margin="240,110,0,0" Content="选择grasscutter.jar" Background="#FFDFDFDF" Foreground="Black" Click="SelectGrasscutter_Click"></Button>
         <Button x:Name="ServerMode" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Height="30" Margin="0,0,30,260" Content="服务器模式" Background="DeepPink" Foreground="White" Click="ServerMode_Click"></Button>
-        <TextBox x:Name="Command" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="18" Margin="400, 35, 0, 0"></TextBox>
-        <Button x:Name="Run" HorizontalAlignment="Left" VerticalAlignment="Top" Width="40" Height="18" Margin="720, 35, 0, 0" Content="执行" Click="RunCommand_Click"></Button>
-        <Button x:Name="fuck" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="60" Margin="20, 200, 0, 0" Content="疑  难  解  答" FontSize="24px"></Button>
+        <Button x:Name="fuck" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="60" Margin="20, 200, 0, 0" Content="疑  难  解  答" FontSize="24px" Visibility="Hidden" Click="fuck_Click"></Button>
     </Grid>
 </pu:WindowX>
