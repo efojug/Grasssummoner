@@ -1,5 +1,5 @@
 # Grasssummoner
-- 这个工具可以让你快速的启动某游戏服务器的重新实现
+- 这个工具可以让你方便快速的启动Grasscutter
 - 第一次启动时只需要进行些许配置，之后就可以一键启动你的游戏和服务器
 - 第一次启动时，你需要选择你的游戏文件(YuanShen.exe或GenshinImpact.exe)
 - 选择你的服务器文件夹下的proxy.py
