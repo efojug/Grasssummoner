@@ -20,5 +20,8 @@
         <Button x:Name="SelectProxy" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Margin="240,70,0,0" Content="选择proxy.py" Background="#FFDFDFDF" Foreground="Black" Click="SelectProxy_Click"></Button>
         <Button x:Name="SelectGrasscutter" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Margin="240,110,0,0" Content="选择grasscutter.jar" Background="#FFDFDFDF" Foreground="Black" Click="SelectGrasscutter_Click"></Button>
         <Button x:Name="ServerMode" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Height="30" Margin="0,0,30,260" Content="服务器模式" Background="DeepPink" Foreground="White" Click="ServerMode_Click"></Button>
+        <TextBox x:Name="Command" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="18" Margin="400, 35, 0, 0"></TextBox>
+        <Button x:Name="Run" HorizontalAlignment="Left" VerticalAlignment="Top" Width="40" Height="18" Margin="720, 35, 0, 0" Content="执行" Click="RunCommand_Click"></Button>
+        <Button x:Name="fuck" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="60" Margin="20, 200, 0, 0" Content="疑  难  解  答" FontSize="24px"></Button>
     </Grid>
 </pu:WindowX>
