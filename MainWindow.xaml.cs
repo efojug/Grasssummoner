@@ -10,6 +10,7 @@ namespace Grasssummoner
 {
     public partial class MainWindow : WindowX
     {
+
         public MainWindow()
         {
             InitializeComponent();
@@ -22,6 +23,8 @@ namespace Grasssummoner
                     GameDir.Text = contents[0];
                     ProxyDir.Text = contents[1];
                     ServerDir.Text = contents[2];
+                    IPAdress.Text = contents[3];
+                    IPPort.Text = contents[4];
                 }
                 catch { }
             }
@@ -105,6 +108,8 @@ namespace Grasssummoner
                     config.WriteLine(GameDir.Text.ToString());
                     config.WriteLine(ProxyDir.Text.ToString());
                     config.WriteLine(ServerDir.Text.ToString());
+                    config.WriteLine(IPAdress.Text.ToString());
+                    config.WriteLine(IPPort.Text.ToString());
                     config.Close();
 
                     MessageBoxX.Show("保存完成", "提示");
@@ -128,6 +133,8 @@ namespace Grasssummoner
                     GameDir.Text = contents[0];
                     ProxyDir.Text = contents[1];
                     ServerDir.Text = contents[2];
+                    IPAdress.Text = contents[3];
+                    IPPort.Text = contents[4];
                     MessageBoxX.Show("加载完成", "提示");
                 }
                 catch { }
@@ -174,7 +181,6 @@ namespace Grasssummoner
                     {
                         FileName = @"java",
                         Arguments = @" -jar " + ServerDir.Text.ToString(),
-                        //FileName = ServerDir.Text,
                         UseShellExecute = true,
                         CreateNoWindow = true
                     };
@@ -219,7 +225,6 @@ namespace Grasssummoner
                 {
                     try
                     {
-                        MessageBoxX.Show("请确认已开启系统代理", "注意");
                         ProcessStartInfo StartMitmProxy = new ProcessStartInfo
                         {
                             FileName = @"mitmdump",
@@ -265,7 +270,6 @@ namespace Grasssummoner
                 {
                     try
                     {
-                        MessageBoxX.Show("请确认已开启系统代理", "注意");
                         ProcessStartInfo StartMitmProxy = new ProcessStartInfo
                         {
                             FileName = @"mitmdump",
@@ -303,6 +307,67 @@ namespace Grasssummoner
         private void fuck_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxX.Show("装mongodb的时候不要选Install mongodb Compass\n 一键启动找不到指定的文件重装mitmproxy和java\n 服务端最后一行报Cluster description not yet avaiable. Waitinng for 30000 ms before time out的重装mongodb\n proxy.py里面报任何错都不要管，只有服务端报错才有用", "emotional damage");
+        }
+
+        private void VPN_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(IPAdress.Text.ToString()) && !string.IsNullOrEmpty(IPPort.Text.ToString()))
+            {
+                try
+                {
+                    ProcessStartInfo EnableProxy = new ProcessStartInfo
+                    {
+                        FileName = @"cmd",
+                        Arguments = @" /c reg add ""HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"" /v ProxyEnable /t REG_DWORD /d 1 /f",
+                        UseShellExecute = true,
+                        CreateNoWindow = false
+                    };
+                    ProcessStartInfo SetProxyServer = new ProcessStartInfo
+                    {
+                        FileName = @"cmd",
+                        Arguments = @" /c reg add ""HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"" /v ProxyServer /d " + @"""" + IPAdress.Text.ToString() + ":" + IPPort.Text.ToString() + @"""" + " /f",
+                        UseShellExecute = true,
+                        CreateNoWindow = false
+                    };
+                    ProcessStartInfo SetProxyOverride = new ProcessStartInfo
+                    {
+                        FileName = @"cmd",
+                        Arguments = @" /c reg add ""HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"" /v ProxyOverride /t REG_SZ /d """" /f",
+                        UseShellExecute = true,
+                        CreateNoWindow = false
+                    };
+                    Process.Start(EnableProxy);
+                    Process.Start(SetProxyServer);
+                    Process.Start(SetProxyOverride);
+                }
+                catch (Exception ex)
+                {
+                    MessageBoxX.Show("代理开启失败，错误信息：\n" + ex.ToString());
+                }
+            }
+            else
+            {
+                MessageBoxX.Show("请填写IP地址和端口");
+            }
+        }
+
+        private void VPN_Unchecked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ProcessStartInfo DisableProxy = new ProcessStartInfo
+                {
+                    FileName = @"cmd",
+                    Arguments = @" /c reg add ""HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"" /v ProxyEnable /t REG_DWORD /d 0 /f",
+                    UseShellExecute = true,
+                    CreateNoWindow = false
+                };
+                Process.Start(DisableProxy);
+            }
+            catch (Exception sb)
+            {
+                MessageBoxX.Show("关闭失败，错误信息：\n" + sb.ToString());
+            }
         }
     }
 }
