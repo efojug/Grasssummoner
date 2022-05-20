@@ -16,7 +16,7 @@
         <TextBox Height="30" Width="200" FontSize="20px" HorizontalAlignment="Left" x:Name="GameDir" VerticalAlignment="Top" Margin="30,30,0,0" />
         <TextBox Height="30" Width="200" FontSize="20px" HorizontalAlignment="Left" x:Name="ProxyDir" VerticalAlignment="Top" Margin="30,70,0,0" />
         <TextBox Height="30" Width="200" FontSize="20px" HorizontalAlignment="Left" x:Name="ServerDir" VerticalAlignment="Top" Margin="30,110,0,0"/>
-        <Button Height="60" Width="180" Content="一键启动" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,30,30" FontSize="24" Click="StartAll_Click" Background="#EEE8AA" x:Name="StartAll" Foreground="White"/>
+        <Button Height="60" Width="180" Content="一键启动" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,30,30" FontSize="24" Click="StartAll_Click" Background="GreenYellow" x:Name="StartAll" Foreground="White"/>
         <Button x:Name="LoadConfig" Content="加载配置文件" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="120" Height="30" Margin="20,0,0,20" Click="LoadConfig_Click"></Button>
         <Button x:Name="SaveConfig" Content="保存配置文件" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="120" Height="30" Margin="20,0,0,60" Click="SaveConfig_Click"></Button>
         <Button Content="仅抓取数据" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Height="30" Margin="0,0,30,200" Click="OnlyStartMitmproxy_Click" Background="#FF7DCDFF" Foreground="White"></Button>
@@ -32,5 +32,6 @@
         <TextBox x:Name="IPPort" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Height="30" Margin="265, 150, 0, 0" FontSize="20px" ToolTip="代理端口"></TextBox>
         <TextBlock Text=":" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="257,150,0,0" FontSize="24"></TextBlock>
         <TextBlock Text="代理IP地址:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,150,0,0" FontSize="24"></TextBlock>
+        <Button x:Name="Stop" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0, 0, 250, 30" Width="180" Height="60" Content="一键停止" FontSize="20px" Background="Orchid" Foreground="White" Click="Stop_Click"></Button>
     </Grid>
 </pu:WindowX>

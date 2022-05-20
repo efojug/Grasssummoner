@@ -222,12 +222,33 @@ namespace Grasssummoner
         }
         private void StartAll_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(ServerDir.Text.ToString()) && !string.IsNullOrEmpty(GameDir.Text) && !string.IsNullOrEmpty(ProxyDir.Text.ToString()))
+            if (!string.IsNullOrEmpty(ServerDir.Text.ToString()) && !string.IsNullOrEmpty(GameDir.Text) && !string.IsNullOrEmpty(ProxyDir.Text.ToString()) && !string.IsNullOrEmpty(IPAdress.Text.ToString()) && !string.IsNullOrEmpty(IPPort.Text.ToString()))
             {
                 if (File.Exists(ServerDir.Text.ToString()) && File.Exists(ProxyDir.Text.ToString()) && File.Exists(GameDir.Text.ToString()))
                 {
                     try
                     {
+                        ProcessStartInfo EnableProxy = new ProcessStartInfo
+                        {
+                            FileName = @"cmd",
+                            Arguments = @" /c reg add ""HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"" /v ProxyEnable /t REG_DWORD /d 1 /f",
+                            UseShellExecute = true,
+                            CreateNoWindow = false
+                        };
+                        ProcessStartInfo SetProxyServer = new ProcessStartInfo
+                        {
+                            FileName = @"cmd",
+                            Arguments = @" /c reg add ""HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"" /v ProxyServer /d " + @"""" + IPAdress.Text.ToString() + ":" + IPPort.Text.ToString() + @"""" + " /f",
+                            UseShellExecute = true,
+                            CreateNoWindow = false
+                        };
+                        ProcessStartInfo SetProxyOverride = new ProcessStartInfo
+                        {
+                            FileName = @"cmd",
+                            Arguments = @" /c reg add ""HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"" /v ProxyOverride /t REG_SZ /d """" /f",
+                            UseShellExecute = true,
+                            CreateNoWindow = false
+                        };
                         ProcessStartInfo StartMitmProxy = new ProcessStartInfo
                         {
                             FileName = @"mitmdump",
@@ -242,6 +263,10 @@ namespace Grasssummoner
                             UseShellExecute = true,
                             CreateNoWindow = true
                         };
+                        Process.Start(EnableProxy);
+                        Process.Start(SetProxyServer);
+                        Process.Start(SetProxyOverride);
+                        Thread.Sleep(500);
                         Process.Start(StartMitmProxy);
                         Thread.Sleep(500);
                         Process.Start(OnlyStartServer);
@@ -345,7 +370,6 @@ namespace Grasssummoner
                 }
                 catch (Exception ex)
                 {
-                    
                     MessageBoxX.Show("代理开启失败，错误信息：\n" + ex.ToString());
                 }
             }
@@ -371,6 +395,60 @@ namespace Grasssummoner
             catch (Exception sb)
             {
                 MessageBoxX.Show("关闭失败，错误信息：\n" + sb.ToString());
+            }
+        }
+
+        private void Stop_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ProcessStartInfo DisableProxy = new ProcessStartInfo
+                {
+                    FileName = @"cmd",
+                    Arguments = @" /c reg add ""HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"" /v ProxyEnable /t REG_DWORD /d 0 /f",
+                    UseShellExecute = true,
+                    CreateNoWindow = false
+                };
+                ProcessStartInfo StopJava = new ProcessStartInfo
+                {
+                    FileName = @"taskkill",
+                    Arguments = @" /f /t /im java.exe",
+                    UseShellExecute = true,
+                    CreateNoWindow = false
+                };
+                ProcessStartInfo StopProxy = new ProcessStartInfo
+                {
+                    FileName = @"taskkill",
+                    Arguments = @" /f /t /im mitmdump.exe",
+                    UseShellExecute = true,
+                    CreateNoWindow = false
+                };
+                ProcessStartInfo StopGame = new ProcessStartInfo
+                {
+                    FileName = @"taskkill",
+                    Arguments = @" /f /t /im GenshinImpact.exe",
+                    UseShellExecute = true,
+                    CreateNoWindow = false
+                };
+                ProcessStartInfo StopGame2 = new ProcessStartInfo
+                {
+                    FileName = @"taskkill",
+                    Arguments = @" /f /t /im YuanShen.exe",
+                    UseShellExecute = true,
+                    CreateNoWindow = false
+                };
+                Process.Start(StopGame);
+                Process.Start(StopGame2);
+                Thread.Sleep(500);
+                Process.Start(DisableProxy);
+                Thread.Sleep(500);
+                Process.Start(StopProxy);
+                Thread.Sleep(500);
+                Process.Start(StopJava);
+            }
+            catch (Exception sb)
+            {
+                MessageBoxX.Show("停止失败，错误信息：\n" + sb.ToString());
             }
         }
     }
