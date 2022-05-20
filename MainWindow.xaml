@@ -32,6 +32,6 @@
         <TextBox x:Name="IPPort" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Height="30" Margin="265, 150, 0, 0" FontSize="20px" ToolTip="代理端口"></TextBox>
         <TextBlock Text=":" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="257,150,0,0" FontSize="24"></TextBlock>
         <TextBlock Text="代理IP地址:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,150,0,0" FontSize="24"></TextBlock>
-        <Button x:Name="Stop" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0, 0, 250, 30" Width="180" Height="60" Content="一键停止" FontSize="20px" Background="Orchid" Foreground="White" Click="Stop_Click"></Button>
+        <Button x:Name="Stop" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0, 0, 250, 30" Width="180" Height="60" Content="一键停止" FontSize="24" Background="Orchid" Foreground="White" Click="Stop_Click"></Button>
     </Grid>
 </pu:WindowX>
