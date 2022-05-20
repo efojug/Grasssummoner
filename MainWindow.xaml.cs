@@ -137,7 +137,10 @@ namespace Grasssummoner
                     IPPort.Text = contents[4];
                     MessageBoxX.Show("加载完成", "提示");
                 }
-                catch { }
+                catch (Exception sb)
+                {
+                    MessageBoxX.Show("加载失败：通常因为编码错误导致乱码或配置文件为空，错误信息:\n" + sb.ToString());
+                }
             }
             else
             {
@@ -342,6 +345,7 @@ namespace Grasssummoner
                 }
                 catch (Exception ex)
                 {
+                    
                     MessageBoxX.Show("代理开启失败，错误信息：\n" + ex.ToString());
                 }
             }
