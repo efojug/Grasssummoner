@@ -226,29 +226,42 @@ namespace Grasssummoner
             {
                 if (File.Exists(ServerDir.Text.ToString()) && File.Exists(ProxyDir.Text.ToString()) && File.Exists(GameDir.Text.ToString()))
                 {
+                    if (!(bool)EnableVPN.IsChecked)
+                    {
+                        try
+                        {
+                            ProcessStartInfo EnableProxy = new ProcessStartInfo
+                            {
+                                FileName = @"cmd",
+                                Arguments = @" /c reg add ""HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"" /v ProxyEnable /t REG_DWORD /d 1 /f",
+                                UseShellExecute = true,
+                                CreateNoWindow = false
+                            };
+                            ProcessStartInfo SetProxyServer = new ProcessStartInfo
+                            {
+                                FileName = @"cmd",
+                                Arguments = @" /c reg add ""HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"" /v ProxyServer /d " + @"""" + IPAdress.Text.ToString() + ":" + IPPort.Text.ToString() + @"""" + " /f",
+                                UseShellExecute = true,
+                                CreateNoWindow = false
+                            };
+                            ProcessStartInfo SetProxyOverride = new ProcessStartInfo
+                            {
+                                FileName = @"cmd",
+                                Arguments = @" /c reg add ""HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"" /v ProxyOverride /t REG_SZ /d """" /f",
+                                UseShellExecute = true,
+                                CreateNoWindow = false
+                            };
+                            Process.Start(EnableProxy);
+                            Process.Start(SetProxyServer);
+                            Process.Start(SetProxyOverride);
+                            Thread.Sleep(1000);
+                        } catch (Exception c)
+                        {
+                            MessageBoxX.Show("代理启动失败，错误信息\n" + c.ToString());
+                        }
+                    }
                     try
                     {
-                        ProcessStartInfo EnableProxy = new ProcessStartInfo
-                        {
-                            FileName = @"cmd",
-                            Arguments = @" /c reg add ""HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"" /v ProxyEnable /t REG_DWORD /d 1 /f",
-                            UseShellExecute = true,
-                            CreateNoWindow = false
-                        };
-                        ProcessStartInfo SetProxyServer = new ProcessStartInfo
-                        {
-                            FileName = @"cmd",
-                            Arguments = @" /c reg add ""HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"" /v ProxyServer /d " + @"""" + IPAdress.Text.ToString() + ":" + IPPort.Text.ToString() + @"""" + " /f",
-                            UseShellExecute = true,
-                            CreateNoWindow = false
-                        };
-                        ProcessStartInfo SetProxyOverride = new ProcessStartInfo
-                        {
-                            FileName = @"cmd",
-                            Arguments = @" /c reg add ""HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"" /v ProxyOverride /t REG_SZ /d """" /f",
-                            UseShellExecute = true,
-                            CreateNoWindow = false
-                        };
                         ProcessStartInfo StartMitmProxy = new ProcessStartInfo
                         {
                             FileName = @"mitmdump",
@@ -263,10 +276,6 @@ namespace Grasssummoner
                             UseShellExecute = true,
                             CreateNoWindow = true
                         };
-                        Process.Start(EnableProxy);
-                        Process.Start(SetProxyServer);
-                        Process.Start(SetProxyOverride);
-                        Thread.Sleep(500);
                         Process.Start(StartMitmProxy);
                         Thread.Sleep(500);
                         Process.Start(OnlyStartServer);
