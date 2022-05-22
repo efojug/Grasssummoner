@@ -370,6 +370,7 @@ namespace Grasssummoner
                 }
                 catch (Exception ex)
                 {
+                    
                     MessageBoxX.Show("代理开启失败，错误信息：\n" + ex.ToString());
                 }
             }
