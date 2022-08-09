@@ -257,6 +257,7 @@ namespace Grasssummoner
                             Thread.Sleep(1000);
                         } catch (Exception c)
                         {
+                            EnableVPN.IsChecked = false;
                             MessageBoxX.Show("代理启动失败，错误信息\n" + c.ToString());
                         }
                     }
@@ -379,12 +380,13 @@ namespace Grasssummoner
                 }
                 catch (Exception ex)
                 {
-                    
+                    EnableVPN.IsChecked = false;
                     MessageBoxX.Show("代理开启失败，错误信息：\n" + ex.ToString());
                 }
             }
             else
             {
+                EnableVPN.IsChecked = false;
                 MessageBoxX.Show("请填写IP地址和端口");
             }
         }
@@ -404,6 +406,7 @@ namespace Grasssummoner
             }
             catch (Exception sb)
             {
+                EnableVPN.IsChecked = true;
                 MessageBoxX.Show("关闭失败，错误信息：\n" + sb.ToString());
             }
         }
@@ -455,6 +458,7 @@ namespace Grasssummoner
                 Process.Start(StopProxy);
                 Thread.Sleep(500);
                 Process.Start(StopJava);
+                EnableVPN.IsChecked = false;
             }
             catch (Exception sb)
             {

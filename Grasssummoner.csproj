@@ -75,10 +75,10 @@
       <HintPath>packages\HandyControl.3.3.0\lib\net48\HandyControl.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignColors, Version=2.0.7.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
-      <HintPath>packages\MaterialDesignColors.2.0.7-ci182\lib\net462\MaterialDesignColors.dll</HintPath>
+      <HintPath>packages\MaterialDesignColors.2.0.7-ci205\lib\net462\MaterialDesignColors.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignThemes.Wpf, Version=4.6.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
-      <HintPath>packages\MaterialDesignThemes.4.6.0-ci182\lib\net462\MaterialDesignThemes.Wpf.dll</HintPath>
+      <HintPath>packages\MaterialDesignThemes.4.6.0-ci205\lib\net462\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
@@ -91,8 +91,8 @@
     <Reference Include="Panuon.UI.Core, Version=2.2.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Panuon.UI.Core.2.2.5\lib\net472\Panuon.UI.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Panuon.UI.Silver, Version=2.2.18.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Panuon.UI.Silver.2.2.18\lib\net472\Panuon.UI.Silver.dll</HintPath>
+    <Reference Include="Panuon.UI.Silver, Version=2.2.19.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Panuon.UI.Silver.2.2.19\lib\net472\Panuon.UI.Silver.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.AppContext, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -163,8 +163,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Management" />
-    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
@@ -321,10 +321,10 @@
     <Error Condition="!Exists('packages\Costura.Fody.5.8.0-alpha0098\build\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Costura.Fody.5.8.0-alpha0098\build\Costura.Fody.targets'))" />
     <Error Condition="!Exists('packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
     <Error Condition="!Exists('packages\Fody.6.6.2\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Fody.6.6.2\build\Fody.targets'))" />
-    <Error Condition="!Exists('packages\MaterialDesignThemes.4.6.0-ci182\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MaterialDesignThemes.4.6.0-ci182\build\MaterialDesignThemes.targets'))" />
+    <Error Condition="!Exists('packages\MaterialDesignThemes.4.6.0-ci205\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MaterialDesignThemes.4.6.0-ci205\build\MaterialDesignThemes.targets'))" />
   </Target>
   <Import Project="packages\Costura.Fody.5.8.0-alpha0098\build\Costura.Fody.targets" Condition="Exists('packages\Costura.Fody.5.8.0-alpha0098\build\Costura.Fody.targets')" />
   <Import Project="packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
   <Import Project="packages\Fody.6.6.2\build\Fody.targets" Condition="Exists('packages\Fody.6.6.2\build\Fody.targets')" />
-  <Import Project="packages\MaterialDesignThemes.4.6.0-ci182\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.6.0-ci182\build\MaterialDesignThemes.targets')" />
+  <Import Project="packages\MaterialDesignThemes.4.6.0-ci205\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.6.0-ci205\build\MaterialDesignThemes.targets')" />
 </Project>

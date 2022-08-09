@@ -8,7 +8,7 @@
         xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
         xmlns:AduSkin="clr-namespace:AduSkin.Controls.Metro;assembly=AduSkin" xmlns:diagnostics="clr-namespace:System.Diagnostics;assembly=System"
             mc:Ignorable="d"
-        Title="Grasssummoner v2.0.6" Height="510" Width="830" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" FontWeight="Normal">
+        Title="Grasssummoner v2.0.7" Height="510" Width="830" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" FontWeight="Normal">
     <WindowChrome.WindowChrome>
         <WindowChrome ResizeBorderThickness="5" GlassFrameThickness="0" CornerRadius="25"/>
     </WindowChrome.WindowChrome>
@@ -27,7 +27,7 @@
         <Button x:Name="SelectGrasscutter" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Margin="240,110,0,0" Content="选择grasscutter.jar" Background="#FFDFDFDF" Foreground="Black" Click="SelectGrasscutter_Click"></Button>
         <Button x:Name="ServerMode" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Height="30" Margin="0,0,30,250" Content="服务器模式" Background="DeepPink" Foreground="White" Click="ServerMode_Click"></Button>
         <Button x:Name="fuck" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="60" Margin="20, 200, 0, 0" Content="疑  难  解  答" FontSize="24px" Visibility="Hidden" Click="fuck_Click"></Button>
-        <pu:Switch x:Name="EnableVPN" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Margin="0, 0, 30, 300" Content="开启代理" Checked="VPN_Checked" Unchecked="VPN_Unchecked" CheckedBackground="DodgerBlue"></pu:Switch>
+        <pu:Switch x:Name="EnableVPN" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Margin="0, 0, 30, 300" Content="开启代理" Checked="VPN_Checked" Unchecked="VPN_Unchecked" CheckedBackground="DodgerBlue" IsChecked="False"></pu:Switch>
         <TextBox x:Name="IPAdress" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Height="30" Margin="160, 150, 0, 0" FontSize="20px" ToolTip="代理IP"></TextBox>
         <TextBox x:Name="IPPort" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Height="30" Margin="265, 150, 0, 0" FontSize="20px" ToolTip="代理端口"></TextBox>
         <TextBlock Text=":" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="257,150,0,0" FontSize="24"></TextBlock>
